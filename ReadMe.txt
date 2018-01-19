@@ -14,4 +14,4 @@ step 4 : save CreateReport.bat file.
 
 step 5: double click on CreateReport.bat file to run it.
 
-step 6: Good Luck!!
+step 6: Good Luck!! :)
