@@ -27,6 +27,7 @@ find.file(/\\package.json$/, __dirname, function(files) {
             {
                 var obj = new Object();
                 obj["AuthorName"] = (pkgdata.author && pkgdata.author.name) != null ? pkgdata.author.name : '';
+                obj["license"] = pkgdata.license != null ? pkgdata.license: '';
                 obj["Version"] =  pkgdata.version != null ? pkgdata.version: 'NotFound';
                 obj["homepage"] =  pkgdata.homepage != null ? pkgdata.homepage: s;
                 obj["Componentname"] =  pkgdata.name != null ? pkgdata.name: '';
@@ -49,13 +50,14 @@ function CreateWorkBook(pkgInfo){
      var worksheet = workbook.addWorksheet('Reoprt1', { pageSetup:{paperSize: 9, orientation:'landscape'}});
      worksheet.columns = [
         { header: 'Component  Name', key: 'Componentname', width: 30 },
+        { header: 'license', key: 'license', width: 30},
         { header: 'Version', key: 'Version', width: 30 },
         { header: 'Author Name', key: 'AuthorName', width: 30},
         { header: 'Homepage', key: 'homepage', width: 70 }
     ];
     worksheet.getRow(1).font = { name: 'Arial Black', bold: true };
     _.each(pkgInfo,function(item,index){
-        worksheet.addRow({Componentname:item.Componentname, Version: item.Version, AuthorName: item.AuthorName, homepage: item.homepage});           
+        worksheet.addRow({Componentname:item.Componentname, license:item.license, Version: item.Version, AuthorName: item.AuthorName, homepage: item.homepage});              
         workbook.xlsx.writeFile(_SaveExcelPath).then(function() {   });  
      }); 
      console.log("No. of item added to Excel is : "+ pkgInfo.length);
